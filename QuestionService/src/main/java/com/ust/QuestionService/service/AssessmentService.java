@@ -51,12 +51,29 @@ public class AssessmentService {
         return existingQuestion;
     }
 
+    public void deleteAssessmentByQidAndSetname(String setname, String qid) {
+
+        if (setname == null || setname.isEmpty()) {
+            throw new IllegalArgumentException("Set name cannot be null or empty");
+        }
+        if (qid == null || qid.isEmpty()) {
+            throw new IllegalArgumentException("Question ID cannot be null or empty");
+        }
+
+
+        Question question = questionRepo.findByQidAndSetname(qid, setname)
+                .orElseThrow(() -> new EntityNotFoundException("Question not found with qid: " + qid + " and setname: " + setname));
+
+
+        questionRepo.delete(question);
+    }
+
     private Question saveQuestion(Question question) {
         return questionRepo.save(question);
     }
 
     private Question findQuestionByQidAndSetname(String qid, String setname) {
         return questionRepo.findByQidAndSetname(qid, setname)
-                .orElse(null); // Replace with actual database retrieval code
+                .orElse(null);
     }
 }

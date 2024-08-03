@@ -11,5 +11,5 @@ public interface QuestionRepo extends JpaRepository<Question,String> {
     List<Question> findBySetname(String setname);
 
     Optional<Question> findByQidAndSetname(String qid, String setname);
-    void deleteByQidAndSetname(String qid, String setname);
+    //void deleteByQidAndSetname(String qid, String setname);
 }

@@ -49,7 +49,7 @@ public class MainController {
 
     @DeleteMapping("/{setname}/{qid}")
     public void deleteAssessment(@PathVariable String setname, @PathVariable String qid) {
-        questionService.deleteAssessmentByQidAndSetname(setname, qid);
+        assessmentService.deleteAssessmentByQidAndSetname(setname, qid);
     }
 
 

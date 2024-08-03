@@ -3,7 +3,10 @@ package com.ust.QuestionService.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -16,12 +19,15 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Question {
     @Id
     private String qid;
     private String qdetails;
     private String createdby;
+    private String setname;
 
+    @OneToMany
     List<Answers> answers;
 
 //    @CreationTimestamp

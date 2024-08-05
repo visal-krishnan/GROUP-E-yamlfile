@@ -4,6 +4,7 @@ import com.ust.QuestionService.model.Assessment;
 import com.ust.QuestionService.model.Question;
 import com.ust.QuestionService.repo.AssessmentRepo;
 import com.ust.QuestionService.repo.QuestionRepo;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,8 @@ public class AssessmentService {
     @Autowired
     private AssessmentRepo assessmentRepo;
 
+    private Assessment assessment;
+
 
 
     public Assessment createAssessment(Assessment assessment) {
@@ -29,4 +32,48 @@ public class AssessmentService {
     }
 
 
+    public Question updateAssessmentbyqid(String setname, String qid, Question question) {
+       
+       
+
+        Question existingQuestion = findQuestionByQidAndSetname(qid, setname);
+        if (existingQuestion == null) {
+            throw new EntityNotFoundException("Question not found with qid: " + qid + " and setname: " + setname);
+        }
+
+        existingQuestion.setQdetails(question.getQdetails());
+        existingQuestion.setCreatedby(question.getCreatedby());
+        existingQuestion.setSetname(question.getSetname());
+        existingQuestion.setAnswers(question.getAnswers());
+
+        existingQuestion = saveQuestion(existingQuestion);
+
+        return existingQuestion;
+    }
+
+    public void deleteAssessmentByQidAndSetname(String setname, String qid) {
+
+        if (setname == null || setname.isEmpty()) {
+            throw new IllegalArgumentException("Set name cannot be null or empty");
+        }
+        if (qid == null || qid.isEmpty()) {
+            throw new IllegalArgumentException("Question ID cannot be null or empty");
+        }
+
+
+        Question question = questionRepo.findByQidAndSetname(qid, setname)
+                .orElseThrow(() -> new EntityNotFoundException("Question not found with qid: " + qid + " and setname: " + setname));
+
+
+        questionRepo.delete(question);
+    }
+
+    private Question saveQuestion(Question question) {
+        return questionRepo.save(question);
+    }
+
+    private Question findQuestionByQidAndSetname(String qid, String setname) {
+        return questionRepo.findByQidAndSetname(qid, setname)
+                .orElse(null);
+    }
 }

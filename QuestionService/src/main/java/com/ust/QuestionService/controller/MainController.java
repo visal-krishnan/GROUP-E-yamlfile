@@ -40,4 +40,18 @@ public class MainController {
     public List<Question> getQuestions(@PathVariable String setname) {
         return questionService.getAllQuestions(setname);
     }
+
+    @PutMapping("/{setname}/{qid}")
+    public Question updateAssessmentbyqid(@PathVariable String setname,@PathVariable String qid, @RequestBody Question question) {
+
+       return assessmentService.updateAssessmentbyqid(setname,qid, question);
+    }
+
+    @DeleteMapping("/{setname}/{qid}")
+    public void deleteAssessment(@PathVariable String setname, @PathVariable String qid) {
+        assessmentService.deleteAssessmentByQidAndSetname(setname, qid);
+    }
+
+
+
 }

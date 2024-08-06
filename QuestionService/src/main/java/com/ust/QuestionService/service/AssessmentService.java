@@ -33,24 +33,20 @@ public class AssessmentService {
 
 
     public Question updateAssessmentbyqid(String setname, String qid, Question question) {
-        // Validate input parameters
+
         if (setname == null || setname.isEmpty()) {
             throw new IllegalArgumentException("Set name cannot be null or empty");
         }
         if (qid == null || qid.isEmpty()) {
             throw new IllegalArgumentException("Question ID cannot be null or empty");
         }
-
-        // Find the existing question
-        Question existingQuestion = findQuestionByQidAndSetname(qid, setname);
+    Question existingQuestion = findQuestionByQidAndSetname(qid, setname);
         if (existingQuestion == null) {
             throw new EntityNotFoundException("Question not found with qid: " + qid + " and setname: " + setname);
         }
 
-        // Debugging statements
         System.out.println("Updating question with qid: " + qid + " and setname: " + setname);
 
-        // Update the existing question's details
         if (question != null) {
             if (question.getQdetails() != null) {
                 existingQuestion.setQdetails(question.getQdetails());
@@ -68,14 +64,13 @@ public class AssessmentService {
             throw new IllegalArgumentException("Question object cannot be null");
         }
 
-        // Save the updated question
         existingQuestion = saveQuestion(existingQuestion);
 
         return existingQuestion;
     }
 
     public void deleteAssessmentByQidAndSetname(String setname, String qid) {
-        // Validate input parameters
+
         if (setname == null || setname.isEmpty()) {
             throw new IllegalArgumentException("Set name cannot be null or empty");
         }
@@ -83,19 +78,11 @@ public class AssessmentService {
             throw new IllegalArgumentException("Question ID cannot be null or empty");
         }
 
-        // Debugging statements
         System.out.println("Deleting question with qid: " + qid + " and setname: " + setname);
 
-        // Check if questionRepo is initialized
-        if (questionRepo == null) {
-            throw new IllegalStateException("Question repository is not initialized");
-        }
-
-        // Find the question
         Question question = questionRepo.findByQidAndSetname(qid, setname)
                 .orElseThrow(() -> new EntityNotFoundException("Question not found with qid: " + qid + " and setname: " + setname));
 
-        // Delete the question
         questionRepo.delete(question);
     }
 

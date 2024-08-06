@@ -30,9 +30,4 @@ public class Question {
     @OneToMany
     List<Answers> answers;
 
-//    @CreationTimestamp
-//    private LocalDateTime createdAt;
-//    @UpdateTimestamp
-//    private LocalDateTime updatedAt;
-
 }

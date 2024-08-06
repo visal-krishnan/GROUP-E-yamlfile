@@ -36,7 +36,7 @@ public class AssessmentService {
        
        
 
-        Question existingQuestion = findQuestionByQidAndSetname(qid, setname);
+        Question existingQuestion = questionRepo.findByQidAndSetname(qid, setname).orElse(null);
         if (existingQuestion == null) {
             throw new EntityNotFoundException("Question not found with qid: " + qid + " and setname: " + setname);
         }
@@ -46,7 +46,7 @@ public class AssessmentService {
         existingQuestion.setSetname(question.getSetname());
         existingQuestion.setAnswers(question.getAnswers());
 
-        existingQuestion = saveQuestion(existingQuestion);
+        existingQuestion = questionRepo.save(existingQuestion);
 
         return existingQuestion;
     }
@@ -63,17 +63,8 @@ public class AssessmentService {
 
         Question question = questionRepo.findByQidAndSetname(qid, setname)
                 .orElseThrow(() -> new EntityNotFoundException("Question not found with qid: " + qid + " and setname: " + setname));
-
-
         questionRepo.delete(question);
     }
 
-    private Question saveQuestion(Question question) {
-        return questionRepo.save(question);
-    }
 
-    private Question findQuestionByQidAndSetname(String qid, String setname) {
-        return questionRepo.findByQidAndSetname(qid, setname)
-                .orElse(null);
-    }
 }

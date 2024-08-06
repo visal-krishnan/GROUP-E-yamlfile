@@ -17,14 +17,13 @@ import java.util.List;
 @Builder
 public class Assessment {
     @Id
-    private String aid;
+    private String assessmentid;
     private String setname;
     private String createdby;
     private String domain;
     private String status;
     private String cname;
 
-    @OneToMany
-    List<Question> questions ;
+
 
 }

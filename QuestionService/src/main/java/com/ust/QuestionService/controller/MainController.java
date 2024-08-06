@@ -52,6 +52,13 @@ public class MainController {
         assessmentService.deleteAssessmentByQidAndSetname(setname, qid);
     }
 
+    @PostMapping("/{setname}/question")
+    public Question createQuestion(@PathVariable String setname, @RequestBody Question question) {
+
+        return questionService.createQuestion(question);
+
+    }
+
 
 
 }

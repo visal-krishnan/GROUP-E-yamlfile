@@ -19,4 +19,7 @@ public class QuestionService {
     }
 
 
+    public Question createQuestion(Question question) {
+        return questionRepo.save(question);
+    }
 }

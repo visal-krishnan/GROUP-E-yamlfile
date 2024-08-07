@@ -35,6 +35,7 @@ public class AssessmentController {
     @GetMapping
     public List<Assessment> getAssessments() {
 
+
         return assessmentService.getAllAssessments();
 
     }

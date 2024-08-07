@@ -21,6 +21,7 @@ import java.util.List;
 @Builder
 public class Question {
     @Id
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private String qid;
     private String qdetails;
     private String setid;

@@ -18,7 +18,7 @@ public class EntityToDto {
                 .answerid(answers.getAnswerid())
                 .answer(answers.getAnswer())
                 .suggestion(answers.getSuggestion())
-                .qid(answers.getQid())
+                //.qid(answers.getQid())
                 .build();
     }
 
@@ -31,7 +31,7 @@ public class EntityToDto {
                 .answerid(AnswersDto.getAnswerid())
                 .answer(AnswersDto.getAnswer())
                 .suggestion(AnswersDto.getSuggestion())
-                .qid(AnswersDto.getQid())
+               // .qid(AnswersDto.getQid())
                 .build();
     }
 
@@ -49,18 +49,18 @@ public class EntityToDto {
     }
 
 
-    public static Question convertToEntity(QuestionDto QuestionDto) {
-        if (QuestionDto == null) {
+    public static Question convertToEntity(QuestionDto questionDto) {
+        if (questionDto == null) {
             return null;
         }
-        List<Answers> answersList = QuestionDto.getAnswers().stream()
-                .map(EntityToDto::convertToEntity)
-                .collect(Collectors.toList());
+//        List<Answers> answersList = questionDto.getAnswers().stream()
+//                .map(EntityToDto::convertToEntity)
+//                .collect(Collectors.toList());
 
         return Question.builder()
-                .qid(QuestionDto.getQid())
-                .qdetails(QuestionDto.getQdetails())
-                .setid(QuestionDto.getSetid())
+                .qid(questionDto.getQid())
+                .qdetails(questionDto.getQdetails())
+                .setid(questionDto.getSetid())
                 .build();
     }
 
@@ -69,6 +69,8 @@ public class EntityToDto {
         if (assessment == null) {
             return null;
         }
+
+
 
 
         return AssessmentDto.builder()
@@ -89,6 +91,9 @@ public class EntityToDto {
             return null;
         }
 
+//        List<Question> questionsList = assessmentDTO.getQuestions().stream()
+//                .map(EntityToDto::convertToEntity)
+//                .collect(Collectors.toList());
 
         return Assessment.builder()
                 .setid(assessmentDTO.getSetid())

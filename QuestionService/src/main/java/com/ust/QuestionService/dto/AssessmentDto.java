@@ -1,5 +1,6 @@
 package com.ust.QuestionService.dto;
 
+import com.ust.QuestionService.model.Question;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
@@ -8,6 +9,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -37,6 +39,8 @@ public class AssessmentDto {
     @Pattern(regexp = "^[A-Za-z]+$", message = "Status must only contain alphabetic characters")
     private String updatedby;
 
-    private String createdtimestamp;
-    private String updatedtimestamp;
+    private Date createdtimestamp;
+    private Date updatedtimestamp;
+
+    private List<QuestionDto> questions;
 }

@@ -22,6 +22,6 @@ public class AnswersDto {
     @NotBlank(message = "Suggestion is mandatory")
     private String suggestion;
 
-    @NotBlank(message = "   Question ID is mandatory")
-    private String qid;
+//    @NotBlank(message = "   Question ID is mandatory")
+//    private String qid;
 }

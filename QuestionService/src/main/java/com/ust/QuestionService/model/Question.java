@@ -24,15 +24,6 @@ public class Question {
     @Id
     private String qid;
     private String qdetails;
-    private String createdby;
-    private String setname;
-
-    @OneToMany
-    List<Answers> answers;
-
-//    @CreationTimestamp
-//    private LocalDateTime createdAt;
-//    @UpdateTimestamp
-//    private LocalDateTime updatedAt;
+    private String setid;
 
 }

@@ -17,4 +17,5 @@ public class Answers {
     private String answerid;
     private String answer;
     private String suggestion;
+    private String qid;
 }

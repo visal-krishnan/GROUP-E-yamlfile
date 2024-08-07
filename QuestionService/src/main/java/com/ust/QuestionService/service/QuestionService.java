@@ -14,12 +14,9 @@ public class QuestionService {
     @Autowired
     QuestionRepo questionRepo;
 
-    public List<Question> getAllQuestions(String setname) {
-        return questionRepo.findBySetname(setname);
+    public List<Question> getAllQuestions(String setid) {
+        return questionRepo.findBySetid(setid);
     }
 
 
-    public Question createQuestion(Question question) {
-        return questionRepo.save(question);
-    }
 }

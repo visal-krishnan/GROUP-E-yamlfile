@@ -1,5 +1,6 @@
 package com.ust.QuestionService.dto;
 
+import com.ust.QuestionService.model.Answers;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;

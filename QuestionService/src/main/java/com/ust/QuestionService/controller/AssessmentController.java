@@ -1,6 +1,7 @@
 package com.ust.QuestionService.controller;
 
 import com.ust.QuestionService.dto.AssessmentDto;
+import com.ust.QuestionService.dto.QuestionDto;
 import com.ust.QuestionService.model.Assessment;
 import com.ust.QuestionService.model.Question;
 import com.ust.QuestionService.service.AssessmentService;
@@ -44,7 +45,7 @@ public class AssessmentController {
     }
 
     @PutMapping("/{setid}/{qid}")
-    public Question updateAssessmentbyqid(@PathVariable String setid,@PathVariable String qid, @RequestBody Question question) {
+    public Question updateAssessmentbyqid(@PathVariable String setid,@PathVariable String qid, @RequestBody QuestionDto question) {
 
        return assessmentService.updateAssessmentbyqid(setid,qid, question);
     }

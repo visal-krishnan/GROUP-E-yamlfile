@@ -1,6 +1,7 @@
 package com.ust.QuestionService.service;
 
 import com.ust.QuestionService.dto.AssessmentDto;
+import com.ust.QuestionService.dto.QuestionDto;
 import com.ust.QuestionService.model.Assessment;
 import com.ust.QuestionService.model.Question;
 import com.ust.QuestionService.repo.AssessmentRepo;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 import static com.ust.QuestionService.dto.EntityToDto.convertToEntity;
@@ -28,7 +30,7 @@ public class AssessmentService {
 
 
     public Assessment createAssessment(AssessmentDto assessment) {
-        convertToEntity(assessment);
+      //  convertToEntity(assessment);
         Assessment assessment1 = convertToEntity(assessment);
         return assessmentRepo.save(assessment1);
     }
@@ -38,64 +40,47 @@ public class AssessmentService {
     }
 
 
-    public Question updateAssessmentbyqid(String setId, String qid, Question question) {
+    public Question updateAssessmentbyqid(String setid, String qid, QuestionDto question) {
 
-        if (setId == null || setId.isEmpty()) {
-            throw new IllegalArgumentException("Set name cannot be null or empty");
+        Optional<Assessment> setInfo= assessmentRepo.findById(setid);
+        Optional<Question> updQuestion=questionRepo.findById(qid);
+        Question question1 = convertToEntity(question);
+        if(updQuestion.isPresent()&& setInfo.isPresent()){
+
+            updQuestion.get().setSetid(question1.getSetid());
+            updQuestion.get().setQid(question1.getQid());
+            updQuestion.get().setQdetails(question1.getQdetails());
+            updQuestion.get().setAnswers(question1.getAnswers());
+            Question test = updQuestion.get();
+            return questionRepo.save(test);
+
         }
-        if (qid == null || qid.isEmpty()) {
-            throw new IllegalArgumentException("Question ID cannot be null or empty");
+        else{
+            throw new RuntimeException("Question not found with questionid: " + qid + " and setname: " + setid);
         }
-    Question existingQuestion = findQuestionByQidAndSetId(qid, setId);
-        if (existingQuestion == null) {
-            throw new EntityNotFoundException("Question not found with qid: " + qid + " and setId: " + setId);
-        }
-
-        System.out.println("Updating question with qid: " + qid + " and setId: " + setId);
-
-        if (question != null) {
-            if (question.getQdetails() != null) {
-                existingQuestion.setQdetails(question.getQdetails());
-            }
-            if (question.getQid() != null) {
-                existingQuestion.setQid(question.getQid());
-            }
-            if (question.getSetid() != null) {
-                existingQuestion.setSetid(question.getSetid());
-            }
-
-        } else {
-            throw new IllegalArgumentException("Question object cannot be null");
-        }
-
-        existingQuestion = saveQuestion(existingQuestion);
-
-        return existingQuestion;
     }
 
     public void deleteAssessmentByQidAndSetId(String setid, String qid) {
 
         if (setid == null || setid.isEmpty()) {
-            throw new IllegalArgumentException("Set id cannot be null or empty");
+            throw new IllegalArgumentException("Set name cannot be null or empty");
         }
         if (qid == null || qid.isEmpty()) {
             throw new IllegalArgumentException("Question ID cannot be null or empty");
         }
 
-        System.out.println("Deleting question with qid: " + qid + " and setId: " + setid);
 
-        Question question = questionRepo.findByQidAndSetid(qid, setid)
-                .orElseThrow(() -> new EntityNotFoundException("Question not found with qid: " + qid + " and setId: " + setid));
-
+        Question question = (Question) questionRepo.findByQidAndSetid(qid, setid)
+                .orElseThrow(() -> new EntityNotFoundException("Question not found with questionid: " + qid + " and setname: " + setid));
         questionRepo.delete(question);
     }
 
-    private Question saveQuestion(Question question) {
-        return questionRepo.save(question);
-    }
-
-    private Question findQuestionByQidAndSetId(String qid, String setid) {
-        return questionRepo.findByQidAndSetid(qid, setid)
-                .orElse(null);
-    }
+//    private Question saveQuestion(Question question) {
+//        return questionRepo.save(question);
+//    }
+//
+//    private Question findQuestionByQidAndSetId(String qid, String setid) {
+//        return questionRepo.findByQidAndSetid(qid, setid)
+//                .orElse(null);
+//    }
 }

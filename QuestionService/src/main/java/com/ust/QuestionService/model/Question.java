@@ -24,10 +24,6 @@ public class Question {
     @Id
     private String qid;
     private String qdetails;
-    private String createdby;
-    private String setname;
-
-    @OneToMany
-    List<Answers> answers;
+    private String setid;
 
 }

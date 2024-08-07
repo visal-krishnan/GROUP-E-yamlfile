@@ -14,11 +14,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class AnswersDto {
     @NotBlank(message = "Answer ID is mandatory")
-    private String aid;
+    private String answerid;
 
     @NotBlank(message = "Answer is mandatory")
     private String answer;
 
     @NotBlank(message = "Suggestion is mandatory")
     private String suggestion;
+
+    @NotBlank(message = "   Question ID is mandatory")
+    private String qid;
 }

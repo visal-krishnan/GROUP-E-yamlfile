@@ -16,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 public class AssessmentDto {
     @NotBlank(message = "Assessment ID is mandatory")
-    private String aid;
+    private String setid;
 
     @NotBlank(message = "Set name is mandatory")
     private String setname;
@@ -35,8 +35,8 @@ public class AssessmentDto {
 
     @NotBlank(message = "Category name is mandatory")
     @Pattern(regexp = "^[A-Za-z]+$", message = "Status must only contain alphabetic characters")
-    private String cname;
+    private String updatedby;
 
-    @NotEmpty(message = "Questions list cannot be empty")
-    private List<QuestionDto> questions;
+    private String createdtimestamp;
+    private String updatedtimestamp;
 }

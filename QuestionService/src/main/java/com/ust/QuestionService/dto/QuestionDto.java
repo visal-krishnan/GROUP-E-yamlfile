@@ -22,12 +22,8 @@ public class QuestionDto {
     @NotBlank(message = "Question details are mandatory")
     private String qdetails;
 
-    @NotBlank(message = "Created by is mandatory")
-    @Pattern(regexp = "^[A-Za-z]+$", message = "Status must only contain alphabetic characters")
-    private String createdby;
-
-    @NotBlank(message = "Set name is mandatory")
-    private String setname;
+    @NotBlank(message = "Set ID is mandatory")
+    private String setid;
 
     @NotEmpty(message = "Answers list cannot be empty")
     private List<AnswersDto> answers;

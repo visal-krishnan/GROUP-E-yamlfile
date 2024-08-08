@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 
 public class EntityToDto {
 
-
     public static AnswersDto convertToDto(Answers answers) {
         if (answers == null) {
             return null;
@@ -22,56 +21,54 @@ public class EntityToDto {
                 .build();
     }
 
-
-    public static Answers convertToEntity(AnswersDto AnswersDto) {
-        if (AnswersDto == null) {
+    public static Answers convertToEntity(AnswersDto answersDto) {
+        if (answersDto == null) {
             return null;
         }
         return Answers.builder()
-                .answerid(AnswersDto.getAnswerid())
-                .answer(AnswersDto.getAnswer())
-                .suggestion(AnswersDto.getSuggestion())
-               // .qid(AnswersDto.getQid())
+                .answerid(answersDto.getAnswerid())
+                .answer(answersDto.getAnswer())
+                .suggestion(answersDto.getSuggestion())
+                //.qid(AnswersDto.getQid())
                 .build();
     }
-
 
     public static QuestionDto convertToDto(Question question) {
         if (question == null) {
             return null;
         }
+        List<AnswersDto> answersDtoList = question.getAnswers() != null ? question.getAnswers().stream()
+                .map(EntityToDto::convertToDto)
+                .collect(Collectors.toList()) : null;
 
         return QuestionDto.builder()
                 .qid(question.getQid())
                 .qdetails(question.getQdetails())
-                .setid(question.getSetid())
+                //.setid(question.getSetid())
+                .answers(answersDtoList)
                 .build();
     }
-
 
     public static Question convertToEntity(QuestionDto questionDto) {
         if (questionDto == null) {
             return null;
         }
-//        List<Answers> answersList = questionDto.getAnswers().stream()
-//                .map(EntityToDto::convertToEntity)
-//                .collect(Collectors.toList());
+        List<Answers> answersList = questionDto.getAnswers() != null ? questionDto.getAnswers().stream()
+                .map(EntityToDto::convertToEntity)
+                .collect(Collectors.toList()) : null;
 
         return Question.builder()
                 .qid(questionDto.getQid())
                 .qdetails(questionDto.getQdetails())
                 .setid(questionDto.getSetid())
+                .answers(answersList)
                 .build();
     }
-
 
     public static AssessmentDto convertToDto(Assessment assessment) {
         if (assessment == null) {
             return null;
         }
-
-
-
 
         return AssessmentDto.builder()
                 .setid(assessment.getSetid())
@@ -82,18 +79,20 @@ public class EntityToDto {
                 .updatedby(assessment.getUpdatedby())
                 .createdtimestamp(assessment.getCreatedtimestamp())
                 .updatedtimestamp(assessment.getUpdatedtimestamp())
+                .questions(assessment.getQuestions() != null ? assessment.getQuestions().stream()
+                        .map(EntityToDto::convertToDto)
+                        .collect(Collectors.toList()) : null)
                 .build();
     }
-
 
     public static Assessment convertToEntity(AssessmentDto assessmentDTO) {
         if (assessmentDTO == null) {
             return null;
         }
 
-//        List<Question> questionsList = assessmentDTO.getQuestions().stream()
-//                .map(EntityToDto::convertToEntity)
-//                .collect(Collectors.toList());
+        List<Question> questionsList = assessmentDTO.getQuestions() != null ? assessmentDTO.getQuestions().stream()
+                .map(EntityToDto::convertToEntity)
+                .collect(Collectors.toList()) : null;
 
         return Assessment.builder()
                 .setid(assessmentDTO.getSetid())
@@ -104,6 +103,7 @@ public class EntityToDto {
                 .updatedby(assessmentDTO.getUpdatedby())
                 .createdtimestamp(assessmentDTO.getCreatedtimestamp())
                 .updatedtimestamp(assessmentDTO.getUpdatedtimestamp())
+                .questions(questionsList)
                 .build();
     }
 }

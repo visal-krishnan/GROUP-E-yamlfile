@@ -4,7 +4,7 @@ spring:
   application:
     name: QuestionService
   datasource:
-    url: jdbc:mysql://localhost:3306/assessment
+    url: jdbc:mysql://localhost:3306/assessment1
     username: root
     password: pass@word1
     driver-class-name: com.mysql.cj.jdbc.Driver

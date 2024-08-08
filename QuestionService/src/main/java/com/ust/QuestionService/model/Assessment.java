@@ -20,7 +20,7 @@ import java.util.List;
 public class Assessment {
     @Id
 
-    private String setid;
+    private Long setid;
     private String setname;
     private String createdby;
     private String domain;

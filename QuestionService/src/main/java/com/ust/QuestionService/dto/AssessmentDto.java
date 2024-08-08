@@ -21,7 +21,7 @@ import java.util.List;
 @AllArgsConstructor
 public class AssessmentDto {
     @NotBlank(message = "Assessment ID is mandatory")
-    private String setid;
+    private Long setid;
 
     @NotBlank(message = "Set name is mandatory")
     private String setname;

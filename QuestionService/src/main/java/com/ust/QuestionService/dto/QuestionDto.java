@@ -18,13 +18,13 @@ import java.util.List;
 @AllArgsConstructor
 public class QuestionDto {
     @NotBlank(message = "Question ID is mandatory")
-    private String qid;
+    private Long qid;
 
     @NotBlank(message = "Question details are mandatory")
     private String qdetails;
 
     @NotBlank(message = "Set ID is mandatory")
-    private String setid;
+    private Long setid;
 
     @NotEmpty(message = "Answers list cannot be empty")
     private List<AnswersDto> answers;

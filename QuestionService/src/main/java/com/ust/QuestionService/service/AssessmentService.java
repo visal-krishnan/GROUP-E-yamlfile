@@ -43,7 +43,7 @@ public class AssessmentService {
     }
 
 
-    public Question updateAssessmentbyqid(String setid, String qid, QuestionDto question) {
+    public Question updateAssessmentbyqid(Long setid, Long qid, QuestionDto question) {
 
         Optional<Assessment> setInfo= assessmentRepo.findById(setid);
         Optional<Question> updQuestion=questionRepo.findById(qid);
@@ -63,12 +63,12 @@ public class AssessmentService {
         }
     }
 
-    public void deleteAssessmentByQidAndSetId(String setid, String qid) {
+    public void deleteAssessmentByQidAndSetId(Long setid, Long qid) {
 
-        if (setid == null || setid.isEmpty()) {
+        if (setid == null) {
             throw new IllegalArgumentException("Set name cannot be null or empty");
         }
-        if (qid == null || qid.isEmpty()) {
+        if (qid == null) {
             throw new IllegalArgumentException("Question ID cannot be null or empty");
         }
 

@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Answers {
     @Id
-    private String answerid;
+    private Long answerid;
     private String answer;
     private String suggestion;
   //  private String qid;

@@ -18,7 +18,7 @@ import java.util.List;
 @Builder
 public class Question {
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long qid;
     private String qdetails;
     private Long setid;

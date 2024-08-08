@@ -24,7 +24,8 @@ public class Assessment {
     private String setname;
     private String createdby;
     private String domain;
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private Status status= Status.IN_PROGRESS;
     private String updatedby;
     private Date createdtimestamp;
     private Date updatedtimestamp;

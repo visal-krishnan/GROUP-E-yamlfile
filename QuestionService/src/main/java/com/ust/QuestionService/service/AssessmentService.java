@@ -4,6 +4,7 @@ import com.ust.QuestionService.dto.AssessmentDto;
 import com.ust.QuestionService.dto.QuestionDto;
 import com.ust.QuestionService.model.Assessment;
 import com.ust.QuestionService.model.Question;
+import com.ust.QuestionService.model.Status;
 import com.ust.QuestionService.repo.AssessmentRepo;
 import com.ust.QuestionService.repo.QuestionRepo;
 import jakarta.persistence.EntityNotFoundException;
@@ -33,6 +34,7 @@ public class AssessmentService {
       //  convertToEntity(assessment);
         Assessment assessment1 = convertToEntity(assessment);
         //assessment1.setQuestions(null);
+        assessment1.setStatus(Status.IN_PROGRESS);
         return assessmentRepo.save(assessment1);
     }
 

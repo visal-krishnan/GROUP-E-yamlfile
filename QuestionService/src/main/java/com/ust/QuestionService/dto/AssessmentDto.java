@@ -1,6 +1,9 @@
 package com.ust.QuestionService.dto;
 
 import com.ust.QuestionService.model.Question;
+import com.ust.QuestionService.model.Status;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
@@ -31,9 +34,8 @@ public class AssessmentDto {
     @Pattern(regexp = "^[A-Za-z]+$", message = "Domain must only contain alphabetic characters")
     private String domain;
 
-    @NotBlank(message = "Status is mandatory")
-    @Pattern(regexp = "COMPLETED|IN_PROGRESS", message = "Status must be either COMPLETED or IN_PROGRESS")
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     @NotBlank(message = "Category name is mandatory")
     @Pattern(regexp = "^[A-Za-z]+$", message = "Status must only contain alphabetic characters")

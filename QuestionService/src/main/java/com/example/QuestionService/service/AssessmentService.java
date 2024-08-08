@@ -36,15 +36,26 @@ public class AssessmentService {
 
 
     public Assessment createAssessment(AssessmentDto assessment) {
-      //  convertToEntity(assessment);
-        Assessment assessment1 = EntityToDto.convertToEntity(assessment);
-        //assessment1.setQuestions(null);
-        assessment1.setStatus(Status.IN_PROGRESS);
-        return assessmentRepo.save(assessment1);
+        try {
+            //  convertToEntity(assessment);
+            Assessment assessment1 = EntityToDto.convertToEntity(assessment);
+            //assessment1.setQuestions(null);
+            assessment1.setStatus(Status.IN_PROGRESS);
+            return assessmentRepo.save(assessment1);
+        }
+        catch (Exception e) {
+            throw new RuntimeException("Failed to create assessment", e);
+        }
     }
 
     public List<Assessment> getAllAssessments() {
-        return assessmentRepo.findAll();
+        try{
+            return assessmentRepo.findAll();
+        }
+        catch (Exception e) {
+            throw new RuntimeException("Failed to get all assessments", e);
+        }
+
     }
 
 

@@ -22,9 +22,9 @@ import java.util.List;
 public class Question {
     @Id
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String qid;
+    private Long qid;
     private String qdetails;
-    private String setid;
+    private Long setid;
 
     @OneToMany
     @JoinColumn(name="questionid")

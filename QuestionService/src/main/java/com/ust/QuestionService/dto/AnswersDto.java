@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class AnswersDto {
     @NotBlank(message = "Answer ID is mandatory")
-    private String answerid;
+    private Long answerid;
 
     @NotBlank(message = "Answer is mandatory")
     private String answer;

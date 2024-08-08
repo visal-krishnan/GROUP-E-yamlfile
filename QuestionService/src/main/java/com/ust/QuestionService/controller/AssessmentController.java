@@ -41,18 +41,18 @@ public class AssessmentController {
     }
 
     @GetMapping("/{setid}")
-    public List<Question> getQuestions(@PathVariable String setid) {
+    public List<Question> getQuestions(@PathVariable Long setid) {
         return questionService.getAllQuestions(setid);
     }
 
     @PutMapping("/{setid}/{qid}")
-    public Question updateAssessmentbyqid(@PathVariable String setid,@PathVariable String qid, @RequestBody QuestionDto question) {
+    public Question updateAssessmentbyqid(@PathVariable Long setid,@PathVariable Long qid, @RequestBody QuestionDto question) {
 
        return assessmentService.updateAssessmentbyqid(setid,qid, question);
     }
 
     @DeleteMapping("/{setid}/{qid}")
-    public void deleteAssessment(@PathVariable String setid, @PathVariable String qid) {
+    public void deleteAssessment(@PathVariable Long setid, @PathVariable Long qid) {
         assessmentService.deleteAssessmentByQidAndSetId(setid, qid);
     }
 

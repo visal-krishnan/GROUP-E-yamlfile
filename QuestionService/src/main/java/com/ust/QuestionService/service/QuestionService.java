@@ -14,7 +14,7 @@ public class QuestionService {
     @Autowired
     QuestionRepo questionRepo;
 
-    public List<Question> getAllQuestions(String setid) {
+    public List<Question> getAllQuestions(Long setid) {
         return questionRepo.findBySetid(setid);
     }
 

@@ -1,5 +1,6 @@
 package com.ust.QuestionService.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,6 +32,7 @@ public class Assessment {
     @OneToMany
     @JoinColumn(name="setid")
     @Cascade(value= CascadeType.ALL)
+    @JsonIgnore
     private List<Question> questions;
 
 

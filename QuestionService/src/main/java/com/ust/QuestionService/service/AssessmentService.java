@@ -32,7 +32,7 @@ public class AssessmentService {
     public Assessment createAssessment(AssessmentDto assessment) {
       //  convertToEntity(assessment);
         Assessment assessment1 = convertToEntity(assessment);
-        assessment1.setQuestions(null);
+        //assessment1.setQuestions(null);
         return assessmentRepo.save(assessment1);
     }
 

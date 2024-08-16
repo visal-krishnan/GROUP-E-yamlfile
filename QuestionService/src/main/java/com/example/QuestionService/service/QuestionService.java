@@ -3,7 +3,6 @@ package com.example.QuestionService.service;
 import com.example.QuestionService.model.Question;
 import com.example.QuestionService.repo.QuestionRepo;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service

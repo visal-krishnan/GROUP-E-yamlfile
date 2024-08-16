@@ -9,17 +9,12 @@ import com.example.QuestionService.service.QuestionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-
 import static com.example.QuestionService.dto.EntityToDto.convertToEntity;
 
 @RestController
 @RequestMapping("/assessments")
 public class AssessmentController {
-
-
-
 
     private final AssessmentService assessmentService;
 
@@ -29,9 +24,6 @@ public class AssessmentController {
         this.assessmentService = assessmentService;
         this.questionService = questionService;
     }
-
-
-
 
     @PostMapping
     public ResponseEntity<Assessment> createAssessment(@RequestBody AssessmentDto assessment) {
@@ -62,7 +54,5 @@ public class AssessmentController {
     public void deleteAssessment(@PathVariable Long setid, @PathVariable Long qid) {
         assessmentService.deleteAssessmentByQidAndSetId(setid, qid);
     }
-
-
 
 }

@@ -114,4 +114,14 @@ public class AssessmentController {
             return ResponseEntity.status(HttpStatus.OK).body("Question not found with question ID: " + qid + " and assessment set ID: " + setid);
         }
     }
+
+    @GetMapping("/question/{qid}")
+    public ResponseEntity<Object> getQuestionById(@PathVariable Long qid) {
+        if (questionService.getQuestionById(qid) == null) {
+            return ResponseEntity.status(HttpStatus.OK).body("Question not found with ID: " + qid);
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.OK).body(questionService.getQuestionById(qid));
+        }
+    }
 }

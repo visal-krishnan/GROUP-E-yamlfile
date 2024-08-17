@@ -59,7 +59,7 @@ public class AssessmentController {
      * @return A ResponseEntity containing a list of Questions for the specified assessment set and HTTP status 200 OK.
      */
     @GetMapping("/{setid}")
-    public ResponseEntity<List<Question>> getQuestions(@PathVariable Long setid) {
+    public ResponseEntity<Object> getQuestions(@PathVariable Long setid) {
             List<Question> questions = questionService.getAllQuestions(setid);
             return ResponseEntity.status(HttpStatus.OK).body(questions);
     }

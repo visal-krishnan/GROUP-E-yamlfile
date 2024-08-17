@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
-    private  final String setAlreadyExists = "Set already exists";
+    private  final String setAlreadyExists = "Set id not found";
 
     @ExceptionHandler(QuestionidNotFoundException.class)
     public ResponseEntity<String> handleQuestionidNotFoundException(

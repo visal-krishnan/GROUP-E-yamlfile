@@ -19,7 +19,13 @@ public class QuestionService {
 
     public List<Question> getAllQuestions(Long setid) {
 
-        return questionRepo.findBySetid(setid).orElseThrow(() -> new SetidNotFoundException("Set id not found"));
+        List<Question> questions = questionRepo.findBySetid(setid).orElse(null);
+        if(questions.isEmpty()) {
+            throw new SetidNotFoundException("Setid not found");
+        }
+        else {
+            return questions;
+        }
     }
 
 

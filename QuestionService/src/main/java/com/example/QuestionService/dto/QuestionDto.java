@@ -24,6 +24,9 @@ public class QuestionDto {
     @NotBlank(message = "Set ID is mandatory")
     private Long setid;
 
+    @NotBlank(message = "Set name is mandatory")
+    private String setname;
+
     @NotEmpty(message = "Answers list cannot be empty")
     private List<AnswersDto> answers;
 }

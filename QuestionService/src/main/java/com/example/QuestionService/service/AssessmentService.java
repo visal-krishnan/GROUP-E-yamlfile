@@ -94,6 +94,10 @@ public class AssessmentService {
         questionRepo.delete(question);
     }
 
+    public Assessment findAssessmentBySetname(String setname) {
+         return  assessmentRepo.findBySetname(setname);
+    }
+
 //    private Question saveQuestion(Question question) {
 //        return questionRepo.save(question);
 //    }

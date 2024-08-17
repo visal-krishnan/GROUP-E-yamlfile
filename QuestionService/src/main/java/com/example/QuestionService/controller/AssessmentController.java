@@ -6,6 +6,7 @@ import com.example.QuestionService.model.Assessment;
 import com.example.QuestionService.model.Question;
 import com.example.QuestionService.service.AssessmentService;
 import com.example.QuestionService.service.QuestionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +22,10 @@ public class AssessmentController {
 
 
 
+    @Autowired
     private final AssessmentService assessmentService;
 
+    @Autowired
     private final QuestionService questionService;
 
     public AssessmentController(AssessmentService assessmentService, QuestionService questionService) {
@@ -47,9 +50,14 @@ public class AssessmentController {
 
     }
 
-    @GetMapping("/{setid}")
-    public ResponseEntity<List<Question>> getQuestions(@PathVariable Long setid) {
-        return ResponseEntity.status(HttpStatus.OK).body(questionService.getAllQuestions(setid));
+    @GetMapping("/{setname}")
+    public ResponseEntity<List<Question>> getQuestions(@PathVariable String setname) {
+        return ResponseEntity.status(HttpStatus.OK).body(questionService.getAllQuestions(setname));
+    }
+
+    @GetMapping("/getAssessment/{setname}")
+    public Assessment getAssessmentBySetName(@PathVariable String setname) {
+        return assessmentService.findAssessmentBySetname(setname);
     }
 
     @PutMapping("/{setid}/{qid}")

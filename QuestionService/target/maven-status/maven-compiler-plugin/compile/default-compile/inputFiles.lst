@@ -1,0 +1,16 @@
+D:\SurveyProject\GROUP-E-yamlfile\QuestionService\src\main\java\com\example\QuestionService\controller\AssessmentController.java
+D:\SurveyProject\GROUP-E-yamlfile\QuestionService\src\main\java\com\example\QuestionService\dto\AnswersDto.java
+D:\SurveyProject\GROUP-E-yamlfile\QuestionService\src\main\java\com\example\QuestionService\dto\AssessmentDto.java
+D:\SurveyProject\GROUP-E-yamlfile\QuestionService\src\main\java\com\example\QuestionService\dto\EntityToDto.java
+D:\SurveyProject\GROUP-E-yamlfile\QuestionService\src\main\java\com\example\QuestionService\dto\QuestionDto.java
+D:\SurveyProject\GROUP-E-yamlfile\QuestionService\src\main\java\com\example\QuestionService\model\Answers.java
+D:\SurveyProject\GROUP-E-yamlfile\QuestionService\src\main\java\com\example\QuestionService\model\Assessment.java
+D:\SurveyProject\GROUP-E-yamlfile\QuestionService\src\main\java\com\example\QuestionService\model\Question.java
+D:\SurveyProject\GROUP-E-yamlfile\QuestionService\src\main\java\com\example\QuestionService\model\Status.java
+D:\SurveyProject\GROUP-E-yamlfile\QuestionService\src\main\java\com\example\QuestionService\QuestionServiceApplication.java
+D:\SurveyProject\GROUP-E-yamlfile\QuestionService\src\main\java\com\example\QuestionService\repo\AnswerRepo.java
+D:\SurveyProject\GROUP-E-yamlfile\QuestionService\src\main\java\com\example\QuestionService\repo\AssessmentRepo.java
+D:\SurveyProject\GROUP-E-yamlfile\QuestionService\src\main\java\com\example\QuestionService\repo\QuestionRepo.java
+D:\SurveyProject\GROUP-E-yamlfile\QuestionService\src\main\java\com\example\QuestionService\service\AnswersService.java
+D:\SurveyProject\GROUP-E-yamlfile\QuestionService\src\main\java\com\example\QuestionService\service\AssessmentService.java
+D:\SurveyProject\GROUP-E-yamlfile\QuestionService\src\main\java\com\example\QuestionService\service\QuestionService.java

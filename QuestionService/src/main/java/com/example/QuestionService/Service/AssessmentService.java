@@ -1,8 +1,4 @@
 package com.example.QuestionService.Service;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CacheConfig;
 
 import com.example.QuestionService.Dto.AssessmentDto;
 import com.example.QuestionService.Dto.EntityToDto;
@@ -18,54 +14,71 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+
+
 @Service
-@CacheConfig(cacheNames = {"assessments", "questions"})
 public class AssessmentService {
 
+
     private final QuestionRepo questionRepo;
+
+
     private final AssessmentRepo assessmentRepo;
+
+
 
     public AssessmentService(QuestionRepo questionRepo, AssessmentRepo assessmentRepo) {
         this.questionRepo = questionRepo;
         this.assessmentRepo = assessmentRepo;
+
     }
 
-    @CachePut(value = "assessments")
-    public Assessment createAssessment(AssessmentDto assessmentDto) {
+
+    public Assessment createAssessment(AssessmentDto assessment) {
         try {
-            Assessment assessment = EntityToDto.convertToEntity(assessmentDto);
-            assessment.setStatus(Status.IN_PROGRESS);
-            return assessmentRepo.save(assessment);
-        } catch (Exception e) {
+
+            Assessment assessment1 = EntityToDto.convertToEntity(assessment);
+
+            assessment1.setStatus(Status.IN_PROGRESS);
+            return assessmentRepo.save(assessment1);
+        }
+        catch (Exception e) {
             throw new RuntimeException("Failed to create assessment", e);
         }
     }
 
-    @Cacheable(value = "assessments")
     public List<Assessment> getAllAssessments() {
-        try {
+        try{
             return assessmentRepo.findAll();
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             throw new RuntimeException("Failed to get all assessments", e);
         }
+
     }
 
-    @CachePut(value = "questions", key = "#qid")
-    public Question updateAssessmentbyqid(Long setid, Long qid, QuestionDto questionDto) {
-        Optional<Assessment> setInfo = assessmentRepo.findById(setid);
-        Optional<Question> updQuestion = questionRepo.findById(qid);
-        Question question = EntityToDto.convertToEntity(questionDto);
 
-        if (updQuestion.isPresent() && setInfo.isPresent()) {
-            updQuestion.get().setAnswers(question.getAnswers());
-            return questionRepo.save(updQuestion.get());
-        } else {
-            throw new EntityNotFoundException("Assessment or Question not found");
+    public Question updateAssessmentbyqid(Long setid, Long qid, QuestionDto question) {
+
+
+        Optional<Assessment> setInfo= assessmentRepo.findById(setid);
+        Optional<Question> updQuestion=questionRepo.findById(qid);
+        Question question1 = EntityToDto.convertToEntity(question);
+        if(updQuestion.isPresent()&& setInfo.isPresent()){
+
+
+            updQuestion.get().setAnswers(question1.getAnswers());
+            Question test = updQuestion.get();
+            return questionRepo.save(test);
+
+        }
+        else{
+            return null;
         }
     }
 
-    @CacheEvict(value = "questions", key = "#qid")
     public void deleteAssessmentByQidAndSetId(Long setid, Long qid) {
+
         if (setid == null) {
             throw new IllegalArgumentException("Set name cannot be null or empty");
         }
@@ -73,9 +86,13 @@ public class AssessmentService {
             throw new IllegalArgumentException("Question ID cannot be null or empty");
         }
 
+
         Question question = (Question) questionRepo.findByQidAndSetid(qid, setid)
                 .orElseThrow(() -> new EntityNotFoundException("Question not found with questionid: " + qid + " and setname: " + setid));
         questionRepo.delete(question);
     }
-    }
+
+
+}
+
 

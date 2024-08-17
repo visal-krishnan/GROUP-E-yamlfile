@@ -109,7 +109,7 @@ public class AssessmentController {
             @PathVariable Long qid) {
         try {
             assessmentService.deleteAssessmentByQidAndSetId(setid, qid);
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+            return ResponseEntity.status(HttpStatus.OK).body("Question deleted successfully");
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.OK).body("Question not found with question ID: " + qid + " and assessment set ID: " + setid);
         }

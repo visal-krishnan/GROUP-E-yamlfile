@@ -1,6 +1,6 @@
-package com.example.QuestionService.repo;
+package com.example.QuestionService.Repo;
 
-import com.example.QuestionService.model.Question;
+import com.example.QuestionService.Model.Question;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

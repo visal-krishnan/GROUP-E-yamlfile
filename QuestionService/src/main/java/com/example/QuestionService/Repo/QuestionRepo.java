@@ -10,6 +10,6 @@ public interface QuestionRepo extends JpaRepository<Question,Long> {
 
     Optional<Object> findByQidAndSetid(Long questionid, Long setid);
 
-    Optional<List<Question>> findBySetid(Long setid);
+       List<Question> findBySetname(String setname);
     //void deleteByQidAndSetname(String qid, String setname);
 }

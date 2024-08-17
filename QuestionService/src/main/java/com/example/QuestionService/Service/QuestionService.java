@@ -17,9 +17,9 @@ public class QuestionService {
         this.questionRepo = questionRepo;
     }
 
-    public List<Question> getAllQuestions(Long setid) {
+    public List<Question> getAllQuestions(String setname) {
 
-        List<Question> questions = questionRepo.findBySetid(setid).orElse(null);
+        List<Question> questions = questionRepo.findBySetname(setname);
         if(questions.isEmpty()) {
             throw new SetidNotFoundException("Setid not found");
         }

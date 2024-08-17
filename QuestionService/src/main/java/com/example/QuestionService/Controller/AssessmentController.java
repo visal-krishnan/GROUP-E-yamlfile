@@ -58,9 +58,9 @@ public class AssessmentController {
      * @param setid The ID of the assessment set for which to retrieve questions, provided as a path variable.
      * @return A ResponseEntity containing a list of Questions for the specified assessment set and HTTP status 200 OK.
      */
-    @GetMapping("/{setid}")
-    public ResponseEntity<Object> getQuestions(@PathVariable Long setid) {
-            List<Question> questions = questionService.getAllQuestions(setid);
+    @GetMapping("/{setname}")
+    public ResponseEntity<Object> getQuestions(@PathVariable String setname) {
+            List<Question> questions = questionService.getAllQuestions(setname);
             return ResponseEntity.status(HttpStatus.OK).body(questions);
     }
 

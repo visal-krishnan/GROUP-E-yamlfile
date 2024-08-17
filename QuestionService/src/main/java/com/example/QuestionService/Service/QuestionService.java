@@ -1,5 +1,7 @@
 package com.example.QuestionService.Service;
 
+import com.example.QuestionService.Exception.QuestionidNotFoundException;
+import com.example.QuestionService.Exception.SetidNotFoundException;
 import com.example.QuestionService.Model.Question;
 import com.example.QuestionService.Repo.QuestionRepo;
 import org.springframework.stereotype.Service;
@@ -16,11 +18,12 @@ public class QuestionService {
     }
 
     public List<Question> getAllQuestions(Long setid) {
-        return questionRepo.findBySetid(setid);
+
+        return questionRepo.findBySetid(setid).orElseThrow(() -> new SetidNotFoundException("Set id not found"));
     }
 
 
     public Question getQuestionById(Long qid) {
-        return questionRepo.findById(qid).orElse(null);
+        return questionRepo.findById(qid).orElseThrow(() -> new QuestionidNotFoundException("Question not found"));
     }
 }

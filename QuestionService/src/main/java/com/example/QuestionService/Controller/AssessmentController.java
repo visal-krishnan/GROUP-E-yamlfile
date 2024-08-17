@@ -59,18 +59,11 @@ public class AssessmentController {
      * @return A ResponseEntity containing a list of Questions for the specified assessment set and HTTP status 200 OK.
      */
     @GetMapping("/{setid}")
-    public ResponseEntity<Object> getQuestions(@PathVariable Long setid) {
+    public ResponseEntity<List<Question>> getQuestions(@PathVariable Long setid) {
             List<Question> questions = questionService.getAllQuestions(setid);
-            if (questions == null || questions.isEmpty()) {
-                // Return a custom message with HTTP status 200 OK if no questions are found
-                return ResponseEntity.status(HttpStatus.OK).body(getString() + ": " + setid);
-            }
             return ResponseEntity.status(HttpStatus.OK).body(questions);
     }
 
-    private static String getString() {
-        return "No questions found for assessment set ID";
-    }
 
     /**
      * Updates a specific question within an assessment.
@@ -87,13 +80,9 @@ public class AssessmentController {
             @RequestBody QuestionDto questionDto) {
 
         Question updatedQuestion = assessmentService.updateAssessmentbyqid(setid, qid, questionDto);
-       if(updatedQuestion!=null) {
            return ResponseEntity.status(HttpStatus.ACCEPTED).body(updatedQuestion);
-       }
-       else {
-          // throw new RuntimeException("Question not found with questionid: " + qid + " and setname: " + setid);
-           return ResponseEntity.status(HttpStatus.OK).body("Question not found");
-       }
+
+
     }
 
     /**
@@ -107,21 +96,14 @@ public class AssessmentController {
     public ResponseEntity<String> deleteAssessment(
             @PathVariable Long setid,
             @PathVariable Long qid) {
-        try {
-            assessmentService.deleteAssessmentByQidAndSetId(setid, qid);
-            return ResponseEntity.status(HttpStatus.OK).body("Question deleted successfully");
-        } catch (EntityNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.OK).body("Question not found with question ID: " + qid + " and assessment set ID: " + setid);
-        }
+
+           return ResponseEntity.status(HttpStatus.OK).body(assessmentService.deleteAssessmentByQidAndSetId(setid, qid));
+
     }
 
     @GetMapping("/question/{qid}")
     public ResponseEntity<Object> getQuestionById(@PathVariable Long qid) {
-        if (questionService.getQuestionById(qid) == null) {
-            return ResponseEntity.status(HttpStatus.OK).body("Question not found with ID: " + qid);
-        }
-        else {
-            return ResponseEntity.status(HttpStatus.OK).body(questionService.getQuestionById(qid));
-        }
+        return ResponseEntity.status(HttpStatus.OK).body(questionService.getQuestionById(qid));
+
     }
 }

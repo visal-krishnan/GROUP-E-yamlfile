@@ -3,6 +3,8 @@ package com.example.QuestionService.Service;
 import com.example.QuestionService.Dto.AssessmentDto;
 import com.example.QuestionService.Dto.EntityToDto;
 import com.example.QuestionService.Dto.QuestionDto;
+import com.example.QuestionService.Exception.QuestionidNotFoundException;
+import com.example.QuestionService.Exception.SetidNotFoundException;
 import com.example.QuestionService.Model.Assessment;
 import com.example.QuestionService.Model.Question;
 import com.example.QuestionService.Model.Status;
@@ -73,23 +75,24 @@ public class AssessmentService {
 
         }
         else{
-            return null;
+           throw new QuestionidNotFoundException("Question to be updated not found");
         }
     }
 
-    public void deleteAssessmentByQidAndSetId(Long setid, Long qid) {
+    public String deleteAssessmentByQidAndSetId(Long setid, Long qid) {
 
         if (setid == null) {
-            throw new IllegalArgumentException("Set name cannot be null or empty");
+            throw new SetidNotFoundException("Set name cannot be null or empty");
         }
         if (qid == null) {
-            throw new IllegalArgumentException("Question ID cannot be null or empty");
+            throw new QuestionidNotFoundException("Question ID cannot be null or empty");
         }
 
 
         Question question = (Question) questionRepo.findByQidAndSetid(qid, setid)
-                .orElseThrow(() -> new EntityNotFoundException("Question not found with questionid: " + qid + " and setname: " + setid));
+                .orElseThrow(() -> new QuestionidNotFoundException("Question not found with questionid: " + qid ));
         questionRepo.delete(question);
+        return ("Question deleted successfully");
     }
 
 

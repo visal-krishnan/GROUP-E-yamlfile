@@ -7,6 +7,8 @@ import com.example.QuestionService.Model.Question;
 import com.example.QuestionService.Service.AssessmentService;
 import com.example.QuestionService.Service.QuestionService;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.websocket.server.PathParam;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +25,6 @@ public class AssessmentController {
     private final AssessmentService assessmentService;
     private final QuestionService questionService;
 
-    // Constructor-based dependency injection
     public AssessmentController(AssessmentService assessmentService, QuestionService questionService) {
         this.assessmentService = assessmentService;
         this.questionService = questionService;
@@ -51,19 +52,6 @@ public class AssessmentController {
         List<Assessment> assessments = assessmentService.getAllAssessments();
         return ResponseEntity.status(HttpStatus.OK).body(assessments);
     }
-
-    /**
-     * Retrieves all questions for a specific assessment.
-     *
-     * @param setid The ID of the assessment set for which to retrieve questions, provided as a path variable.
-     * @return A ResponseEntity containing a list of Questions for the specified assessment set and HTTP status 200 OK.
-     */
-    @GetMapping("/{setname}")
-    public ResponseEntity<Object> getQuestions(@PathVariable String setname) {
-            List<Question> questions = questionService.getAllQuestions(setname);
-            return ResponseEntity.status(HttpStatus.OK).body(questions);
-    }
-
 
     /**
      * Updates a specific question within an assessment.
@@ -96,14 +84,21 @@ public class AssessmentController {
     public ResponseEntity<String> deleteAssessment(
             @PathVariable Long setid,
             @PathVariable Long qid) {
-
            return ResponseEntity.status(HttpStatus.OK).body(assessmentService.deleteAssessmentByQidAndSetId(setid, qid));
-
     }
 
     @GetMapping("/question/{qid}")
-    public ResponseEntity<Object> getQuestionById(@PathVariable Long qid) {
+    public ResponseEntity<Question> getQuestionById(@PathVariable Long qid) {
         return ResponseEntity.status(HttpStatus.OK).body(questionService.getQuestionById(qid));
+    }
 
+    @GetMapping("/{setname}")
+    public ResponseEntity<AssessmentDto> getAssessmentBySetname(@PathVariable String setname,@RequestParam(required = false) Long qid){
+        return ResponseEntity.status(HttpStatus.OK).body(assessmentService.getAssessmentBySetname(setname, qid));
+    }
+
+    @PutMapping("/{setname}")
+    public ResponseEntity<Question> updateAssessmentBySetname(@PathVariable String setname,@RequestParam(required = false) Long qid,@RequestBody Question question){
+        return ResponseEntity.status(HttpStatus.OK).body(assessmentService.updateAssessmentBySetname(setname, qid,question));
     }
 }

@@ -8,8 +8,10 @@ import java.util.Optional;
 
 public interface QuestionRepo extends JpaRepository<Question,Long> {
 
-    Optional<Object> findByQidAndSetid(Long questionid, Long setid);
+    Optional<Question> findByQidAndSetid(Long questionid, Long setid);
 
-       List<Question> findBySetname(String setname);
-    //void deleteByQidAndSetname(String qid, String setname);
+    List<Question> findBySetid(Long setid);
+
+    Question findBySetidAndQid(Long setid, Long qid);
+
 }

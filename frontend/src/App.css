@@ -1,0 +1,24 @@
+.app {
+  display: flex;       /* Flexbox layout for the app */
+  margin: 0;           /* Remove default margin */
+  padding: 0;          /* Remove default padding */
+  min-height: 100vh;   /* Ensure the app covers the full viewport height */
+}
+
+.sidebar {
+  width: 250px;        /* Fixed width for sidebar */
+  background-color: #333;
+  color: #fff;
+  padding: 15px;
+  position: fixed;     /* Fixes the sidebar in place */
+  height: 100%;        /* Full viewport height for sidebar */
+  z-index: 1000;       /* Ensure sidebar is on top */
+}
+
+.main-content {
+  margin-left: 300px;  /* Adjust margin to make space for sidebar */
+  padding: 15px;
+  flex: 1;             /* Allow main content to take remaining space */
+  position: relative;  /* Ensure the content area is positioned correctly */
+  z-index: 1;          /* Lower z-index to be below sidebar */
+}

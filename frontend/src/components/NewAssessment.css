@@ -1,0 +1,42 @@
+.NewAssessmentForm {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.NewAssessmentForm h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.NewAssessmentForm form {
+    display: flex;
+    flex-direction: column;
+}
+
+.NewAssessmentForm label {
+    margin-bottom: 15px;
+}
+
+.NewAssessmentForm input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.NewAssessmentForm button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.NewAssessmentForm button:hover {
+    background-color: #45a049;
+}

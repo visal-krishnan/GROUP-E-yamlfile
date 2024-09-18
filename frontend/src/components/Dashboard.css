@@ -1,0 +1,37 @@
+.Dashboard {
+    text-align: center; /* Center-aligns the content */
+    padding: 20px;      /* Adds some space around the content */
+  }
+  
+  .Dashboard h1 {
+    font-size: 1.5em;  /* Makes the heading larger */
+    color: #333;        /* Sets the color of the heading */
+            /* Removes default margin */
+  }
+  
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    border: 1px solid #0a3257;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  tr:hover {
+    background-color: #ddd;
+  }
+  
+  
